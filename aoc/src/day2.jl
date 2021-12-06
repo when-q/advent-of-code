@@ -1,11 +1,11 @@
 using DelimitedFiles
 
-input = readdlm("input.txt")
+module day2
 
-coord = [0, 0]
-p = 0;
-
-function part1(coord, move)
+function part1(io::IO)
+	input = readdlm(io)
+	coord = [0, 0]
+	p = 0;
 	for i = 1:size(input, 1)
 		movement = input[i, 1]
 		moves    = input[i, 2]
@@ -19,7 +19,10 @@ function part1(coord, move)
 	end
 end
 
-function part2(coord, aim)
+function part2(io::IO)
+	input = readdlm(io)
+	coord = [0, 0]
+	aim = 0
 	for i = 1:size(input, 1)
 		movement = input[i, 1]
 		moves    = input[i, 2]
@@ -33,6 +36,5 @@ function part2(coord, aim)
 		end
 	end
 end
-part2(coord, p)
-println(coord[1]*coord[2])
 
+end
