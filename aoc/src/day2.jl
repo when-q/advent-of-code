@@ -1,5 +1,5 @@
 using DelimitedFiles
-
+using...InlineTest
 module day2
 
 function part1(io::IO)

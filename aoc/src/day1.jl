@@ -1,6 +1,8 @@
 module day1
 
-@time begin
+
+using ..InlineTest
+
 function part1(io::IO)
 	input = readlines(io)
 	solution = sum(next > prev for (prev, next) in zip(input, input[2:end]))
@@ -13,6 +15,9 @@ function part2(io::IO)
 	return solution
 end
 
-end
+# test
+
+
+
 
 end
