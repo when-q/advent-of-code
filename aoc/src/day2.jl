@@ -1,6 +1,7 @@
-using DelimitedFiles
-using...InlineTest
 module day2
+
+using DelimitedFiles
+using ..Test
 
 function part1(io::IO)
 	input = readdlm(io)
@@ -17,6 +18,7 @@ function part1(io::IO)
 			coord[2] += moves
 		end
 	end
+	return coord[1]*coord[2]
 end
 
 function part2(io::IO)
@@ -35,6 +37,7 @@ function part2(io::IO)
 			aim += moves
 		end
 	end
+	return coord[1]*coord[2]
 end
 
 end

@@ -1,7 +1,6 @@
 module day1
 
-
-using ..InlineTest
+using ..Test
 
 function part1(io::IO)
 	input = readlines(io)

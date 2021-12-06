@@ -1,5 +1,5 @@
 module aoc
-using InlineTest
+using Test
 
 include("day1.jl")
 include("day2.jl")
