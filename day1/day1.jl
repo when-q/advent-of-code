@@ -1,3 +1,4 @@
+@time begin
 input = parse.(Int, readlines("input.txt"))
 
 current = 0;
@@ -14,3 +15,4 @@ for i = 1:length(input)
 end
 
 println(larger)
+end
