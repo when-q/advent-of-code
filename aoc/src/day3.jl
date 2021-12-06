@@ -1,20 +1,35 @@
 module day3
 
+using DelimitedFiles
 using ..Test
+
 
 function part1(io::IO)
 	input = readlines(io)
-	gamma = 0b0
-	for i = size(input, 1):1
-		ones = count_ones(input[i])
-		zeros = count_zeros(input[i])
-
-		gamma << 1
-		if ones > zeros
-			gamma += 1
+	count = fill(0, length(input[1]))
+	gamma = "0b"
+	epsilon = "0b"
+	for i in 1:length(input)
+		for (j, v) in enumerate(input[i])
+			if v == '0'
+				count[j] -= 1
+			else
+				count[j] += 1
+			end
 		end
 	end
-	return convert(Int64, gamma)
+
+	for i in 1:length(input[1])
+		if count[i] <= 0
+			gamma *= "0"
+		else
+			gamma *= "1"
+		end
+	end
+	shift = 64 - length(input[1])
+
+	g = parse(UInt64, gamma)
+	return Int(g*(~g << shift >>shift))
 end
 
 end
