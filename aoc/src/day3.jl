@@ -1,6 +1,5 @@
 module day3
 
-using DelimitedFiles
 using ..Test
 
 function part1(io::IO)
