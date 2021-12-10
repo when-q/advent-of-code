@@ -1,6 +1,6 @@
 module day4
 
-using DelimitedFiles
+using ..DelimitedFiles
 using ..Test
 
 function parseIO(io::IO)

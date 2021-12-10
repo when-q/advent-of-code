@@ -1,5 +1,6 @@
 module aoc
 using Test
+using DelimitedFiles
 
 include("day1.jl")
 include("day2.jl")

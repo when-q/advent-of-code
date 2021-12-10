@@ -1,6 +1,6 @@
 module day2
 
-using DelimitedFiles
+using ..DelimitedFiles
 using ..Test
 
 function part1(io::IO)
