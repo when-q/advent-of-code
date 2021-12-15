@@ -2,7 +2,6 @@ module day7
 
 using ..Test
 using ..DelimitedFiles
-using Statistics
 
 function parseIO(io::IO)
 	input = readdlm(io, ',', Int)	
