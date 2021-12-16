@@ -19,7 +19,7 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 
 @testset "aoc.day8" begin
 	@test aoc.day8.part1(IOBuffer(DAY8)) == 26
-#	@test aoc.day8.part2(IOBuffer(DAY8)) == 168
+	@test aoc.day8.part2(IOBuffer(DAY8)) == 61229
 end
 
 
