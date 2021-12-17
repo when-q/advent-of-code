@@ -8,5 +8,6 @@ using Test
 #include("testDay5.jl")
 #include("testDay6.jl")
 #include("testDay7.jl")
-include("testDay8.jl")
+#include("testDay8.jl")
+include("testDay9.jl")
 

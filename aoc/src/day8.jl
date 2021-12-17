@@ -18,7 +18,7 @@ function part1(io::IO)
 	input = parseIO(io)[:, (11:end)]
 	count = 0
 	for seg in input
-		if length(seg) ∈ [2,4,3,7]
+		if length(seg) ∈ [2,3,4,7]
 			count += 1
 		end
 	end
@@ -72,7 +72,6 @@ function part2(io::IO)
 						else
 							parse_table["2"] = seg
 						end
-
 					else
 						if seg_comp(parse_table["4"], seg) == 1 
 							if seg_comp(parse_table["1"],seg) == 0
@@ -85,7 +84,6 @@ function part2(io::IO)
 						end
 					end
 				end
-
 			end
 		end
 
