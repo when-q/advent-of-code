@@ -91,60 +91,88 @@ function get_low_points(input)
 end
 
 function expand_basin(input)
+	# Note: this can be reduced but im too lazy to reduce it
+	# details: flood fill algorithm
 	dim1 = size(input, 1)
 	dim2 = size(input, 2)
 	low_points = get_low_points(input)
-	println(dim1, " ", dim2)
 	b = Vector{Int}()
 
 	result = Vector{Int}()
 	for (y, x) in keys(low_points)
 		basin = Vector{Tuple{Int, Int}}()
+		visited = Vector{Tuple{Int, Int}}()
 		push!(basin, (y, x))
 		basin_size = 0
 		while length(basin) != 0
+
 			(b, a) = pop!(basin)
-			basin_size += length(basin)
+			basin_size += 1
 			if b == 1
-				if input[b, a] < input[b+1, a] && input[b+1, a] != 9
+				if (input[b, a] < input[b+1, a] 
+					&& input[b+1, a] != 9
+					&& (b+1, a) ∉ visited)
+
 					push!(basin, (b+1, a))
+					push!(visited,(b+1, a))
 				end
 			elseif b == dim1
-				if input[b, a] < input[b-1, a] && input[b-1, a] != 9
-					push!(basin, (b-1, a))
-				end
-			else
-				if input[b, a] < input[b+1, a] && input[b+1, a] != 9
-					push!(basin, (b+1, a))
-				end
-				if input[b, a] < input[b-1, a] && input[b-1, a] != 9
+				if (input[b, a] < input[b-1, a] 
+					&& input[b-1, a] != 9
+					&& (b-1, a) ∉ visited)
 
 					push!(basin, (b-1, a))
+					push!(visited, (b-1, a))
+				end
+			else
+				if (input[b, a] < input[b+1, a] 
+					&& input[b+1, a] != 9
+					&& (b+1, a) ∉ visited)
+					push!(basin, (b+1, a))
+					push!(visited,(b+1, a))
+				end
+				if (input[b, a] < input[b-1, a] 
+					&& input[b-1, a] != 9
+					&& (b-1, a) ∉ visited)
+
+					push!(basin, (b-1, a))
+					push!(visited, (b-1, a))
 				end
 			end
 
 			if a == 1
-				if input[b, a] < input[b, a+1] && input[b, a+1] != 9
+				if (input[b, a] < input[b, a+1] 
+					&& input[b, a+1] != 9
+					&& (b, a+1) ∉ visited)
 
 					push!(basin, (b, a+1))
+					push!(visited, (b, a+1))
 				end
 			elseif a == dim2
-				if input[b, a] < input[b, a-1] && input[b, a-1] != 9
+				if (input[b, a] < input[b, a-1] 
+					&& input[b, a-1] != 9
+					&& (b, a-1) ∉ visited)
 
 					push!(basin, (b, a-1))
+					push!(visited, (b, a-1))
 				end
 			else
-				if input[b, a] < input[b, a+1] && input[b, a+1] != 9
+				if (input[b, a] < input[b, a+1] 
+					&& input[b, a+1] != 9
+					&& (b, a+1) ∉ visited)
 
 					push!(basin, (b, a+1))
+					push!(visited, (b, a+1))
 				end
-				if input[b, a] < input[b, a-1] && input[b, a-1] != 9
+				if (input[b, a] < input[b, a-1] 
+					&& input[b, a-1] != 9
+					&& (b, a-1) ∉ visited)
 
 					push!(basin, (b, a-1))
+					push!(visited, (b, a-1))
 				end
 			end
 		end
-		println(basin_size)
 		push!(result, basin_size)
 
 	end
@@ -154,7 +182,6 @@ end
 function part1(io::IO)
 	input = parseIO(io)
 	low_points = get_low_points(input)
-	println(low_points)
 	return sum(values(low_points)) + length(values(low_points))
 end
 
