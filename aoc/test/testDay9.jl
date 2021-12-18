@@ -14,7 +14,7 @@ const DAY9=
 
 @testset "aoc.day9" begin
 	@test aoc.day9.part1(IOBuffer(DAY9)) == 15
-#	@test aoc.day9.part2(IOBuffer(DAY9)) == 61229
+	@test aoc.day9.part2(IOBuffer(DAY9)) == 1134
 end
 
 

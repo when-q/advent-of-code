@@ -94,20 +94,61 @@ function expand_basin(input)
 	dim1 = size(input, 1)
 	dim2 = size(input, 2)
 	low_points = get_low_points(input)
+	println(dim1, " ", dim2)
+	b = Vector{Int}()
 
+	result = Vector{Int}()
 	for (y, x) in keys(low_points)
-		basin = Vector{Int}()
-		# x stands
-		# edge case for k
-		if y == 1
-			if 		
-		elseif y == dim2
-		else
+		basin = Vector{Tuple{Int, Int}}()
+		push!(basin, (y, x))
+		basin_size = 0
+		while length(basin) != 0
+			(b, a) = pop!(basin)
+			basin_size += length(basin)
+			if b == 1
+				if input[b, a] < input[b+1, a] && input[b+1, a] != 9
+					push!(basin, (b+1, a))
+				end
+			elseif b == dim1
+				if input[b, a] < input[b-1, a] && input[b-1, a] != 9
+					push!(basin, (b-1, a))
+				end
+			else
+				if input[b, a] < input[b+1, a] && input[b+1, a] != 9
+					push!(basin, (b+1, a))
+				end
+				if input[b, a] < input[b-1, a] && input[b-1, a] != 9
 
-		if x == 1
-		elseif x == dim1
-		else
+					push!(basin, (b-1, a))
+				end
+			end
+
+			if a == 1
+				if input[b, a] < input[b, a+1] && input[b, a+1] != 9
+
+					push!(basin, (b, a+1))
+				end
+			elseif a == dim2
+				if input[b, a] < input[b, a-1] && input[b, a-1] != 9
+
+					push!(basin, (b, a-1))
+				end
+			else
+				if input[b, a] < input[b, a+1] && input[b, a+1] != 9
+
+					push!(basin, (b, a+1))
+				end
+				if input[b, a] < input[b, a-1] && input[b, a-1] != 9
+
+					push!(basin, (b, a-1))
+				end
+			end
+		end
+		println(basin_size)
+		push!(result, basin_size)
+
 	end
+	return sort(result, rev=true)
 end
 
 function part1(io::IO)
@@ -120,7 +161,7 @@ end
 function part2(io::IO)
 	input = parseIO(io)
 	result = expand_basin(input)
-		
+	return result[1] * result[2] * result[3]	
 end
 
 end
