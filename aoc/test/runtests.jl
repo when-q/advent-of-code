@@ -9,5 +9,6 @@ using Test
 #include("testDay6.jl")
 #include("testDay7.jl")
 #include("testDay8.jl")
-include("testDay9.jl")
+#include("testDay9.jl")
+include("testDay10.jl")
 

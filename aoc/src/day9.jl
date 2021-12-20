@@ -1,7 +1,6 @@
 module day9
 
 using ..Test
-using ..DelimitedFiles
 function parseIO(io::IO)
 	input = readlines(io)
 	m = [[parse(Int64, ss) for ss in split(y, "")] for y in input]
