@@ -26,9 +26,8 @@ const DAY11_TEST=
 """
 
 @testset "aoc.day11" begin
-	@test aoc.day11.part1(IOBuffer(DAY11), 100) == 1656
-	@test aoc.day11.part1(IOBuffer(DAY11), 10) == 204
-	@test aoc.day11.part1(IOBuffer(DAY11_TEST), 3) == 9
+	@test aoc.day11.part1(IOBuffer(DAY11),100) == 1656
+	@test aoc.day11.part1(IOBuffer(DAY11_TEST),10) == 9
 #	@test aoc.day11.part2(IOBuffer(DAY11)) == 288957
 end
 
