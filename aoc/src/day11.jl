@@ -54,26 +54,45 @@ function part1(io::IO,iterations::Int)
     dim2 = size(input, 2)
 	count = 0
 	for iter in 1:iterations
-		input .+= 1
-		prev_flashed = 0
-		while true
-			for i in 1:dim1
-				for j in 1:dim2
-					if (input[i, j] > 9)
-						adjacent_flash(input, i, j)
-					end
-				end
-			end
-			if prev_flashed != sum(x < 0 for x in input)
-				prev_flashed = sum(x < 0 for x in input)
-			else
-				break
-			end
-		end
-
-		input = broadcast(trim, input)
+		input = update(input, dim1,dim2)	
 		count += sum(k == 0 for k in input)
 	end
+	return count
+end
+function update(input::Matrix, dim1::Int, dim2::Int)::Matrix
+	input .+= 1
+	prev_flashed = 0
+	while true
+		for i in 1:dim1
+			for j in 1:dim2
+				if (input[i, j] > 9)
+					adjacent_flash(input, i, j)
+				end
+			end
+		end
+		if prev_flashed != sum(x < 0 for x in input)
+			prev_flashed = sum(x < 0 for x in input)
+		else
+			break
+		end
+	end
+	
+	return broadcast(trim, input)
+end
+function part2(io::IO)
+	input = parseIO(io)
+    dim1 = size(input, 1)
+    dim2 = size(input, 2)
+	count = 0
+	while true
+		input = update(input, dim1, dim2)
+
+		count += 1
+		if sum(x == 0 for x in input) == length(input)
+			return count
+		end
+	end
+
 	return count
 end
 
